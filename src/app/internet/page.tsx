@@ -17,7 +17,7 @@ const solutions = [
     icon: Radio,
     title: 'VSAT Solutions',
     description: 'Reliable satellite communication for critical infrastructure and enterprises requiring dedicated bandwidth.',
-    features: ['Dedicated Bandwidth', 'Secure VPN Support', 'Auto-Deployment Antennas', 'Scalable Plans'],
+    features: ['Dedicated Bandwidth', 'Secure VPN', 'Auto-Deployment Antennas', 'Scalable Plans'],
   },
   {
     icon: Wifi,
