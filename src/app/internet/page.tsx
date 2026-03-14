@@ -11,7 +11,7 @@ const solutions = [
     icon: Globe,
     title: 'Starlink Enterprise',
     description: 'High-speed, low-latency satellite internet for businesses in remote locations. Professional installation and management.',
-    features: ['Professional Mounting', 'Network Integration', '24/7 Monitoring', 'Static IP Options'],
+    features: ['Professional Mounting', 'Network Integration', '247 Monitoring', 'Static IP Options'],
   },
   {
     icon: Radio,
