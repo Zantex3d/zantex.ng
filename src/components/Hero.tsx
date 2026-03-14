@@ -153,7 +153,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-slate-500 text-sm md:text-lg leading-relaxed max-w-2xl mb-12"
         >
+<<<<<<< HEAD
           At Zantex Global Investment, we craft powerful solutions in Digital Services,
+=======
+          At Zantex Global Investment, we craft powerful solutions in Digital Services, 
+>>>>>>> ce5dfa1a19d2602c44becb9877b06ff8e77d66b7
           Electrical Engineering, and Electronics Development to drive innovation across industries.
         </motion.p>
 
