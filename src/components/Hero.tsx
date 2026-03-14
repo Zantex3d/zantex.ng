@@ -57,10 +57,10 @@ export default function Hero() {
       {/* ── Background Elements (Performance Optimized) ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Simple Dot Grid - No intense animation to prevent lag */}
-        <div 
-          className="absolute inset-0 opacity-[0.1]" 
-          style={{ 
-            backgroundImage: 'radial-gradient(circle at center, #2f455c 1px, transparent 1px)', 
+        <div
+          className="absolute inset-0 opacity-[0.1]"
+          style={{
+            backgroundImage: 'radial-gradient(circle at center, #2f455c 1px, transparent 1px)',
             backgroundSize: '40px 40px',
             maskImage: 'linear-gradient(to bottom, black 50%, transparent 95%)',
             WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 95%)'
@@ -71,19 +71,19 @@ export default function Hero() {
         {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{ 
+            animate={{
               y: ['-100%', '200%'],
               opacity: [0, 0.3, 0]
             }}
-            transition={{ 
-              duration: 6 + i, 
-              repeat: Infinity, 
+            transition={{
+              duration: 6 + i,
+              repeat: Infinity,
               ease: "linear",
               delay: i * 2.5
             }}
             className={`absolute w-[1.5px] ${i % 2 === 0 ? 'bg-[#2f455c]' : 'bg-[#34f5c6]'}`}
-            style={{ 
-              left: `${20 + i * 20}%`, 
+            style={{
+              left: `${20 + i * 20}%`,
               height: '350px',
               filter: 'blur(1px)'
             }}
@@ -91,7 +91,7 @@ export default function Hero() {
         ))}
 
         {/* Static Focal Lighting - Low computational cost */}
-        <div 
+        <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-[0.08]"
           style={{
             background: 'radial-gradient(ellipse at 50% 0%, #34f5c6 0%, transparent 70%)',
@@ -137,11 +137,11 @@ export default function Hero() {
         >
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">Creativity</span>
           <div className="w-2.5 h-2.5 rounded-full border border-slate-300 flex items-center justify-center">
-             <div className="w-1 h-1 bg-slate-300 rounded-full" />
+            <div className="w-1 h-1 bg-slate-300 rounded-full" />
           </div>
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">Versatility</span>
           <div className="w-2.5 h-2.5 rounded-full border border-slate-300 flex items-center justify-center">
-             <div className="w-1 h-1 bg-slate-300 rounded-full" />
+            <div className="w-1 h-1 bg-slate-300 rounded-full" />
           </div>
           <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">Intelligence</span>
         </motion.div>
@@ -153,7 +153,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-slate-500 text-sm md:text-lg leading-relaxed max-w-2xl mb-12"
         >
-          At Zantex Global Enhancement, we craft powerful solutions in Digital Services, 
+          At Zantex Global Investment, we craft powerful solutions in Digital Services,
           Electrical Engineering, and Electronics Development to drive innovation across industries.
         </motion.p>
 
@@ -224,9 +224,9 @@ export default function Hero() {
                 className="relative flex flex-col justify-between p-6 hover:scale-[1.02] transition-transform duration-500"
               >
                 <div className="absolute inset-0 opacity-[0.12] pointer-events-none mix-blend-overlay"
-                     style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '4px 4px' }} />
+                  style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '4px 4px' }} />
 
-                <div 
+                <div
                   className="absolute bottom-10 right-[-10px] w-[110%] h-[80%] opacity-40 mix-blend-screen pointer-events-none"
                   style={{
                     background: 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 60%)',
@@ -234,9 +234,9 @@ export default function Hero() {
                   }}
                 >
                   <div className="absolute inset-0 scale-[1.2]" style={{
-                      backgroundImage: 'radial-gradient(circle, #fff 1.5px, transparent 1.5px)',
-                      backgroundSize: '10px 10px',
-                      opacity: 0.15
+                    backgroundImage: 'radial-gradient(circle, #fff 1.5px, transparent 1.5px)',
+                    backgroundSize: '10px 10px',
+                    opacity: 0.15
                   }} />
                 </div>
 
@@ -253,23 +253,23 @@ export default function Hero() {
                 </div>
 
                 <div className="relative z-10 mt-auto">
-                    <div className="text-white/40 text-[9px] font-bold uppercase tracking-widest mb-1.5">Project Ref.</div>
-                    <div className="text-white text-[12px] font-mono tracking-widest mb-5 font-bold">{card.cardNum}</div>
-                    
-                    <div className="bg-white/20 h-[1.5px] w-full mb-5 rounded-full" />
+                  <div className="text-white/40 text-[9px] font-bold uppercase tracking-widest mb-1.5">Project Ref.</div>
+                  <div className="text-white text-[12px] font-mono tracking-widest mb-5 font-bold">{card.cardNum}</div>
 
-                    <div className="text-white text-[12px] font-black uppercase tracking-wider mb-4 leading-none">{card.holder}</div>
-                    
-                    <div className="flex gap-8">
-                        <div>
-                            <div className="text-white/40 text-[8px] font-bold uppercase tracking-widest mb-1">Release</div>
-                            <div className="text-white text-[10px] font-mono font-bold">{card.expiry}</div>
-                        </div>
-                        <div>
-                            <div className="text-white/40 text-[8px] font-bold uppercase tracking-widest mb-1">Ver.</div>
-                            <div className="text-white text-[10px] font-mono font-bold">v{card.cvv}</div>
-                        </div>
+                  <div className="bg-white/20 h-[1.5px] w-full mb-5 rounded-full" />
+
+                  <div className="text-white text-[12px] font-black uppercase tracking-wider mb-4 leading-none">{card.holder}</div>
+
+                  <div className="flex gap-8">
+                    <div>
+                      <div className="text-white/40 text-[8px] font-bold uppercase tracking-widest mb-1">Release</div>
+                      <div className="text-white text-[10px] font-mono font-bold">{card.expiry}</div>
                     </div>
+                    <div>
+                      <div className="text-white/40 text-[8px] font-bold uppercase tracking-widest mb-1">Ver.</div>
+                      <div className="text-white text-[10px] font-mono font-bold">v{card.cvv}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
