@@ -122,7 +122,7 @@ export default function Footer() {
           {/* Bottom Bar */}
           <div className="mt-20 pt-10 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-[12px] text-slate-400 font-medium">
-              © {new Date().getFullYear()} Zantex Global. All rights reserved. <span className="ml-2 text-slate-300 font-black">POWERED BY DIFINITO</span>
+              © {new Date().getFullYear()} Zantex Global. All rights reserved. <span className="ml-2 text-slate-300 font-black">POWERED BY ZANTEX DIGITAL</span>
             </p>
             <div className="flex gap-8">
               <Link href="/terms" className="text-[12px] font-bold text-slate-400 hover:text-[#2f455c] transition-colors underline underline-offset-4">Terms of Service</Link>
