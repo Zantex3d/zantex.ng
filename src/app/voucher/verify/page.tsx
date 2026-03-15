@@ -115,7 +115,7 @@ function VerifyContent() {
             <DetailItem icon={<Mail className="w-4 h-4" />} label="Email Address" value={data.email} />
             <DetailItem icon={<Home className="w-4 h-4" />} label="Hostel" value={data.hostel === 'girls' ? 'Girls Hostel' : 'UMTH Male Hostel'} />
             <DetailItem icon={<Zap className="w-4 h-4" />} label="Plan" value={data.plan.toUpperCase()} />
-            <DetailItem icon={<Wifi className="w-4 h-4" />} label="Network" value={`ZANTEX WIFI - ${data.hostel.toUpperCase()}`} />
+            <DetailItem icon={<Wifi className="w-4 h-4" />} label="Network" value={`ZANTEX HOSTEL WIFI - ${data.hostel.toUpperCase()}`} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-10">
@@ -140,7 +140,7 @@ function VerifyContent() {
       <div className="mt-12 text-center text-slate-400">
         <p className="text-xs font-bold uppercase tracking-widest mb-4">Instructions</p>
         <p className="text-sm font-medium max-w-md mx-auto leading-relaxed">
-          1. Connect to the <span className="text-[#2f455c] font-black">Zantex Smart Wi-Fi</span> network.
+          1. Connect to the <span className="text-[#2f455c] font-black">Zantex Hostel Wi-Fi</span> network.
           <br />
           2. Open your browser and enter the voucher code when prompted.
           <br />
