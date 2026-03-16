@@ -11,6 +11,11 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "Zantex | Engineering Innovation",
   description: "Zantex is a leading tech company specializing in engineering software, electrical solutions, and electronics innovation.",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
