@@ -164,24 +164,26 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-wrap items-center justify-center gap-6"
         >
-          <button
-            className="inline-flex items-center gap-4 font-black rounded-full transition-all duration-300 hover:scale-[1.05] active:scale-95 group shadow-2xl shadow-[#34f5c6]/10 bg-[#2f455c] text-white"
-            style={{
-              padding: '14px 20px 14px 32px',
-              fontSize: '15px',
-            }}
-          >
-            Explore Services
-            <span
-              className="inline-flex items-center justify-center rounded-full bg-[#34f5c6] text-[#2f455c] group-hover:rotate-45 transition-transform duration-500"
+          <Link href="/services">
+            <button
+              className="inline-flex items-center gap-4 font-black rounded-full transition-all duration-300 hover:scale-[1.05] active:scale-95 group shadow-2xl shadow-[#34f5c6]/10 bg-[#2f455c] text-white"
               style={{
-                width: 36,
-                height: 36,
+                padding: '14px 20px 14px 32px',
+                fontSize: '15px',
               }}
             >
-              <ArrowRight className="w-5 h-5" />
-            </span>
-          </button>
+              Explore Services
+              <span
+                className="inline-flex items-center justify-center rounded-full bg-[#34f5c6] text-[#2f455c] group-hover:rotate-45 transition-transform duration-500"
+                style={{
+                  width: 36,
+                  height: 36,
+                }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </span>
+            </button>
+          </Link>
 
           <Link href="/quote">
             <button className="text-[#2f455c] font-bold text-sm px-8 py-4 rounded-full border-2 border-slate-100 hover:border-[#2f455c] transition-colors">
