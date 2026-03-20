@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     } else {
       switch (plan) {
         case 'daily': amount = 500; break;
-        case 'weekly': amount = 3000; break;
+        case 'weekly': amount = 1500; break;
         case 'monthly': amount = 5000; break;
         default: amount = 0;
       }
