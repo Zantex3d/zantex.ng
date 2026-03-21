@@ -43,9 +43,36 @@ function VerifyContent() {
 
   const copyVoucher = () => {
     if (data?.voucher_code) {
-      navigator.clipboard.writeText(data.voucher_code);
-      alert('Voucher code copied to clipboard!');
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(data.voucher_code).then(() => {
+          alert('Voucher code copied to clipboard!');
+        }).catch(() => {
+          fallbackCopyTextToClipboard(data.voucher_code);
+        });
+      } else {
+        fallbackCopyTextToClipboard(data.voucher_code);
+      }
     }
+  };
+
+  const fallbackCopyTextToClipboard = (text: string) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    // Avoid scrolling to bottom
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert('Voucher code copied to clipboard!');
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+      alert('Failed to copy. Please select the code manually.');
+    }
+    document.body.removeChild(textArea);
   };
 
   const printVoucher = () => {
@@ -81,28 +108,28 @@ function VerifyContent() {
     <motion.div 
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="max-w-2xl mx-auto py-12 px-6"
+      className="max-w-2xl mx-auto py-8 sm:py-12 px-4 sm:px-6"
     >
-      <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl border border-slate-100 overflow-hidden relative">
+      <div className="bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-12 shadow-2xl border border-slate-100 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-32 h-32 bg-[#34f5c6]/10 rounded-bl-full -mr-8 -mt-8" />
         
         <div className="text-center mb-10">
           <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10" />
           </div>
-          <h1 className="text-4xl font-black text-[#2f455c] mb-2">Payment Successful!</h1>
+          <h1 className="text-3xl sm:text-4xl font-black text-[#2f455c] mb-2">Payment Successful!</h1>
           <p className="text-slate-500 font-bold">Your WiFi voucher has been issued.</p>
         </div>
 
         <div className="space-y-6">
-          <div className="p-8 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-center relative group">
+          <div className="p-6 md:p-8 bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200 text-center relative group">
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Voucher Code</p>
-            <h2 className="text-5xl font-black text-[#2f455c] tracking-widest mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2f455c] tracking-widest mb-4 break-all select-all">
               {data.voucher_code}
             </h2>
             <button 
               onClick={copyVoucher}
-              className="absolute top-4 right-4 p-2 bg-white rounded-lg text-slate-400 hover:text-[#34f5c6] transition-colors shadow-sm"
+              className="absolute top-4 right-4 p-2 bg-white rounded-lg text-slate-400 hover:text-[#34f5c6] hover:bg-slate-100 transition-all shadow-sm active:scale-95"
               title="Copy Code"
             >
               <Copy className="w-4 h-4" />
@@ -154,7 +181,7 @@ function VerifyContent() {
 function DetailItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
   return (
     <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50/50 border border-slate-100/50">
-      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#34f5c6] shadow-sm">
+      <div className="w-10 h-10 shrink-0 rounded-xl bg-white flex items-center justify-center text-[#34f5c6] shadow-sm">
         {icon}
       </div>
       <div>

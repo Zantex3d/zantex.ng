@@ -93,7 +93,7 @@ export default function VoucherPage() {
                     <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full -translate-x-1/2 translate-y-1/2" />
                 </div>
 
-                <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -105,7 +105,7 @@ export default function VoucherPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-5xl md:text-7xl font-black tracking-tighter mb-6"
+                        className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6"
                     >
                         Get Connected <span className="text-[#34f5c6]">Instantly.</span>
                     </motion.h1>
@@ -134,7 +134,7 @@ export default function VoucherPage() {
                             transition={{ delay: 0.2 }}
                             className="lg:col-span-5 bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-slate-200 border border-slate-100"
                         >
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                                 {/* Full Name */}
                                 <div className="space-y-3">
                                     <label className="text-sm font-black text-[#2f455c]">Full Name</label>
@@ -143,7 +143,7 @@ export default function VoucherPage() {
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
                                         placeholder="Ibrahim Shettima"
-                                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
+                                        className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
                                         required
                                     />
                                 </div>
@@ -156,7 +156,7 @@ export default function VoucherPage() {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="nabilah123@example.com"
-                                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
+                                        className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
                                         required
                                     />
                                 </div>
@@ -172,7 +172,7 @@ export default function VoucherPage() {
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         placeholder="234XXXXXXXXXX"
-                                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-mono font-bold text-lg text-[#2f455c]"
+                                        className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-mono font-bold text-base sm:text-lg text-[#2f455c]"
                                         required
                                     />
                                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest pl-2">Format: 234 followed by your number</p>
@@ -188,7 +188,7 @@ export default function VoucherPage() {
                                                 type="button"
                                                 onClick={() => setSelectedLocation(loc.id)}
                                                 className={cn(
-                                                    "flex items-center justify-between p-5 rounded-2xl border-2 transition-all text-left group",
+                                                    "flex items-center justify-between p-4 sm:p-5 rounded-2xl border-2 transition-all text-left group",
                                                     selectedLocation === loc.id
                                                         ? "bg-[#2f455c] border-[#2f455c] text-white"
                                                         : "bg-white border-slate-100 text-[#2f455c] hover:border-slate-200"
@@ -240,7 +240,7 @@ export default function VoucherPage() {
                                         transition={{ delay: 0.3 }}
                                         onClick={() => setSelectedPlan(plan.id)}
                                         className={cn(
-                                            "relative p-8 rounded-[2.5rem] border-2 cursor-pointer transition-all duration-500 flex flex-col justify-between h-[380px] group",
+                                            "relative p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border-2 cursor-pointer transition-all duration-500 flex flex-col justify-between min-h-[300px] h-auto lg:h-[380px] group",
                                             selectedPlan === plan.id
                                                 ? "bg-white border-[#34f5c6] shadow-2xl shadow-[#34f5c6]/10 scale-[1.02]"
                                                 : "bg-slate-50 border-transparent hover:border-slate-200"
@@ -290,7 +290,7 @@ export default function VoucherPage() {
                                 className="bg-[#2f455c] rounded-[3rem] p-10 relative overflow-hidden group border border-white/5"
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#34f5c6]/5 blur-3xl rounded-full" />
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 relative z-10">
                                     <div className="flex gap-4">
                                         <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[#34f5c6]">
                                             <Zap className="w-5 h-5" />
@@ -330,7 +330,7 @@ export default function VoucherPage() {
             <section className="pb-32 px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl font-black text-[#2f455c] mb-12">How to Connect</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
                         <div className="space-y-4">
                             <div className="w-16 h-16 bg-slate-50 border border-slate-100 rounded-3xl flex items-center justify-center mx-auto text-2xl font-black text-[#34f5c6]">1</div>
                             <h4 className="font-black text-[#2f455c]">Purchase Voucher</h4>
