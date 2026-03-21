@@ -171,7 +171,7 @@ export default function VoucherPage() {
                                         type="text"
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
-                                        placeholder="234XXXXXXXXXX"
+                                        placeholder="+234XXXXXXXXXX"
                                         className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-mono font-bold text-base sm:text-lg text-[#2f455c]"
                                         required
                                     />
