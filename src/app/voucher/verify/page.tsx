@@ -140,7 +140,7 @@ function VerifyContent() {
             <DetailItem icon={<User className="w-4 h-4" />} label="Full Name" value={data.fullname} />
             <DetailItem icon={<Phone className="w-4 h-4" />} label="Phone Number" value={data.phone} />
             <DetailItem icon={<Mail className="w-4 h-4" />} label="Email Address" value={data.email} />
-            <DetailItem icon={<Home className="w-4 h-4" />} label="Hostel" value={data.hostel === 'girls' ? 'Girls Hostel' : 'UMTH Male Hostel'} />
+            <DetailItem icon={<Home className="w-4 h-4" />} label="Hostel" value={data.hostel === 'girls' ? 'Girls Hostel' : data.hostel === 'medical-nursing' ? 'Medical & Nursing Hostels' : 'UMTH Male Hostel'}/>
             <DetailItem icon={<Zap className="w-4 h-4" />} label="Plan" value={data.plan.toUpperCase()} />
             <DetailItem icon={<Wifi className="w-4 h-4" />} label="Network" value={`ZANTEX HOSTEL WIFI - ${data.hostel.toUpperCase()}`} />
           </div>
