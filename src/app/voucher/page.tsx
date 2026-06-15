@@ -48,7 +48,7 @@ const locations = [
     {
         id: 'medical-nursing',
         name: 'Medical & Nursing Hostels',
-        description: 'School of Nursing & College of Nursing'
+        description: 'Available in all blocks'
     }
 ];
 
