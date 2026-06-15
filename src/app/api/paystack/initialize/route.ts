@@ -29,6 +29,21 @@ export async function POST(req: Request) {
         default: amount = 0;
       }
     }
+    if (hostel === 'medical-nursing') {
+    switch (plan) {
+        case 'daily':
+            amount = 500;
+            break;
+
+        case 'weekly':
+            amount = 1500;
+            break;
+
+        case 'monthly':
+            amount = 5000;
+            break;
+      }
+    }
 
     if (amount <= 0) {
       return NextResponse.json({ error: 'Invalid plan or hostel selection.' }, { status: 400 });
