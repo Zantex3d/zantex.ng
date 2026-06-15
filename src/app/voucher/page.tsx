@@ -35,8 +35,21 @@ const plans = [
 ];
 
 const locations = [
-    { id: 'umth', name: 'UMTH Male Hostel', description: 'Available in all blocks' },
-    { id: 'unimaid-girls', name: 'Unimaid Girls Hostel', description: 'Aisha Buhari / Ali Monguno / BOT' },
+    {
+        id: 'umth',
+        name: 'UMTH Male Hostel',
+        description: 'Available in all blocks'
+    },
+    {
+        id: 'unimaid-girls',
+        name: 'Unimaid Girls Hostel',
+        description: 'Aisha Buhari / Ali Monguno / BOT'
+    },
+    {
+        id: 'medical-nursing',
+        name: 'Medical & Nursing Hostels',
+        description: 'School of Nursing & College of Nursing'
+    }
 ];
 
 export default function VoucherPage() {
