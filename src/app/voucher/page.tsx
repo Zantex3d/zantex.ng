@@ -45,11 +45,11 @@ const locations = [
         name: 'Unimaid Girls Hostel',
         description: 'Aisha Buhari / Ali Monguno / BOT'
     },
-    {
-        id: 'medical-nursing',
-        name: 'Medical & Nursing Hostels',
-        description: 'Available in all blocks'
-    }
+    // {
+    //     id: 'medical-nursing',
+    //     name: 'Medical & Nursing Hostels',
+    //     description: 'Available in all blocks'
+    // }
 ];
 
 export default function VoucherPage() {
@@ -155,7 +155,7 @@ export default function VoucherPage() {
                                         type="text"
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
-                                        placeholder="Ibrahim Shettima"
+                                        placeholder="shettima hamza"
                                         className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
                                         required
                                     />
