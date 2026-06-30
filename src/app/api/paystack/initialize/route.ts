@@ -36,11 +36,11 @@ export async function POST(req: Request) {
             break;
 
         case 'weekly':
-            amount = 2000;
+            amount = 1500;
             break;
 
         case 'monthly':
-            amount = 6000;
+            amount 5000;
             break;
       }
     }
