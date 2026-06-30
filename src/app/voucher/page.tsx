@@ -45,11 +45,11 @@ const locations = [
         name: 'Unimaid Girls Hostel',
         description: 'Aisha Buhari / Ali Monguno / BOT'
     },
-    // {
-    //     id: 'medical-nursing',
-    //     name: 'Medical & Nursing Hostels',
-    //     description: 'Available in all blocks'
-    // }
+    {
+        id: 'medical-nursing',
+        name: 'Medical & Nursing Hostels',
+        description: 'Available in all blocks'
+    }
 ];
 
 export default function VoucherPage() {
