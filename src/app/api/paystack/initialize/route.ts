@@ -15,8 +15,9 @@ export async function POST(req: Request) {
 
     // Determine amount based on hostel and plan
     let amount = 0;
-    if (hostel === 'girls' || hostel === 'unimaid-girls') {
+    if (hostel === 'girls' || hostel === 'unimaid-girls' || hostel === 'medical-nursing') {
       switch (plan) {
+        case 'daily': amount = 500; break;
         case 'weekly': amount = 1500; break;
         case 'monthly': amount = 5000; break;
         default: amount = 0;
@@ -27,21 +28,6 @@ export async function POST(req: Request) {
         case 'weekly': amount = 1500; break;
         case 'monthly': amount = 5000; break;
         default: amount = 0;
-      }
-    }
-    if (hostel === 'medical-nursing') {
-    switch (plan) {
-        case 'daily':
-            amount = 500;
-            break;
-
-        case 'weekly':
-            amount = 1500;
-            break;
-
-        case 'monthly':
-            amount 5000;
-            break;
       }
     }
 
