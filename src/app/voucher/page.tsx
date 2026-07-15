@@ -49,6 +49,11 @@ const locations = [
         id: 'medical-nursing',
         name: 'Medical & Nursing Hostels',
         description: 'Available in all blocks'
+    },
+    {
+        id: 'ard-hblocks',
+        name: 'ARD H-Blocks',
+        description: 'Available in all blocks'
     }
 ];
 
