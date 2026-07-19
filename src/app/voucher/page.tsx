@@ -47,7 +47,7 @@ const locations = [
     },
     {
         id: 'medical-nursing',
-        name: 'Medical & Nursing Hostels',
+        name: 'UMTH Medical Girls & Nursing Hostels',
         description: 'Available in all blocks'
     },
     {
