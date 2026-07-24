@@ -102,86 +102,104 @@ export default function VoucherPage() {
         }
     };
 
-    return (
-        <main className="min-h-screen bg-white">
-            <Navbar />
-            {/* ── Pop Up ────────────────────────────────────────── */}
-            <AnimatePresence>
-                    {showAd && (
-                        <motion.div
-                            initial={{ y: -150, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -150, opacity: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] w-[95%] max-w-4xl"
+   return (
+    <main className="min-h-screen bg-white">
+        <Navbar />
+
+        {/* ───────────────────────── Hiring Popup ───────────────────────── */}
+        <AnimatePresence>
+            {showAd && (
+                <motion.div
+                    initial={{ y: -120, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -120, opacity: 0 }}
+                    transition={{
+                        duration: 0.45,
+                        ease: "easeOut",
+                    }}
+                    className="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] w-[95%] max-w-3xl px-2"
+                >
+                    <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl border border-slate-200">
+
+                        <button
+                            onClick={() => {
+                                setShowAd(false);
+                                localStorage.setItem(
+                                    "zantexHiringAd",
+                                    Date.now().toString()
+                                );
+                            }}
+                            className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/70 text-white transition hover:bg-black"
                         >
-                            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                
-                                <button
-                                    onClick={() => {
-                                        setShowAd(false);
-                                        localStorage.setItem("zantexHiringAd", Date.now().toString());
-                                    }}
-                                    className="absolute top-3 right-3 z-20 bg-black/50 text-white w-8 h-8 rounded-full"
-                                >
-                                    ✕
-                                </button>
-                
-                                <a
-                                    href="https://wa.me/2349068702472"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <Image
-                                        src="/images/ad.png"
-                                        alt="We're Hiring"
-                                        width={1200}
-                                        height={675}
-                                        className="w-full h-auto"
-                                        priority
-                                    />
-                                </a>
-                
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            {/* ── Hero Section ────────────────────────────────────────── */}
-            <section className="relative pt-32 md:pt-48 pb-20 overflow-hidden bg-[#2f455c] text-white">
-                <div className="absolute inset-0 z-0 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#34f5c6]/10 blur-[150px] rounded-full translate-x-1/2 -translate-y-1/2" />
-                    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full -translate-x-1/2 translate-y-1/2" />
-                </div>
+                            ✕
+                        </button>
 
-                {/* ── ADVERT SECTIION ────────────────────────────────────────── */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-[#34f5c6] text-[10px] font-black uppercase tracking-widest mb-8"
-                    >
-                        <Wifi className="w-3 h-3" /> Smart Campus Wi-Fi
-                    </motion.div>
+                        <a
+                            href="https://wa.me/2349068702472"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Image
+                                src="/images/ad.png"
+                                alt="Zantex Zone Recruitment"
+                                width={1200}
+                                height={675}
+                                priority
+                                className="block w-full h-auto"
+                            />
+                        </a>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6"
-                    >
-                        Get Connected <span className="text-[#34f5c6]">Instantly.</span>
-                    </motion.h1>
+        {/* ───────────────────────── Hero Section ───────────────────────── */}
+        <section className="relative overflow-hidden bg-[#2f455c] pt-32 md:pt-48 pb-20 text-white">
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-slate-300 text-sm md:text-lg font-medium max-w-2xl mx-auto mb-16"
-                    >
-                        Purchase your Zantex WiFi voucher online and enjoy blazing fast internet speeds
-                        across your campus hostels. Reliable, secure, and always active.
-                    </motion.p>
-                </div>
-            </section>
+            <div className="absolute inset-0 pointer-events-none">
+
+                <div className="absolute top-0 right-0 h-[800px] w-[800px] rounded-full bg-[#34f5c6]/10 blur-[150px] translate-x-1/2 -translate-y-1/2" />
+
+                <div className="absolute bottom-0 left-0 h-[600px] w-[600px] rounded-full bg-blue-500/5 blur-[120px] -translate-x-1/2 translate-y-1/2" />
+
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center">
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#34f5c6] mb-8"
+                >
+                    <Wifi className="h-3 w-3" />
+                    Smart Campus Wi-Fi
+                </motion.div>
+
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 text-4xl font-black tracking-tighter sm:text-5xl md:text-7xl"
+                >
+                    Get Connected{" "}
+                    <span className="text-[#34f5c6]">
+                        Instantly.
+                    </span>
+                </motion.h1>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="mx-auto mb-16 max-w-2xl text-sm font-medium text-slate-300 md:text-lg"
+                >
+                    Purchase your Zantex WiFi voucher online and enjoy blazing
+                    fast internet speeds across your campus hostels.
+                    Reliable, secure and always active.
+                </motion.p>
+
+            </div>
+
+        </section>
 
             {/* ── Form Section ────────────────────────────────────────── */}
             <section className="relative -mt-20 pb-32 z-20 px-6">
