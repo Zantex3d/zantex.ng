@@ -1,8 +1,9 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import { Wifi, Smartphone, Check, ArrowRight, MessageCircle, Clock, Zap, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -63,6 +64,7 @@ export default function VoucherPage() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [selectedLocation, setSelectedLocation] = useState(locations[0].id);
     const [selectedPlan, setSelectedPlan] = useState(plans[1].id);
+    const [showAd, setShowAd] = useState(false);
 
     const [loading, setLoading] = useState(false);
 
@@ -103,7 +105,47 @@ export default function VoucherPage() {
     return (
         <main className="min-h-screen bg-white">
             <Navbar />
-
+            {/* ── Pop Up ────────────────────────────────────────── */}
+            <AnimatePresence>
+                    {showAd && (
+                        <motion.div
+                            initial={{ y: -150, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -150, opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="fixed top-5 left-1/2 -translate-x-1/2 z-[9999] w-[95%] max-w-4xl"
+                        >
+                            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                
+                                <button
+                                    onClick={() => {
+                                        setShowAd(false);
+                                        localStorage.setItem("zantexHiringAd", Date.now().toString());
+                                    }}
+                                    className="absolute top-3 right-3 z-20 bg-black/50 text-white w-8 h-8 rounded-full"
+                                >
+                                    ✕
+                                </button>
+                
+                                <a
+                                    href="https://wa.me/2349068702472"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Image
+                                        src="/images/ad.png"
+                                        alt="We're Hiring"
+                                        width={1200}
+                                        height={675}
+                                        className="w-full h-auto"
+                                        priority
+                                    />
+                                </a>
+                
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             {/* ── Hero Section ────────────────────────────────────────── */}
             <section className="relative pt-32 md:pt-48 pb-20 overflow-hidden bg-[#2f455c] text-white">
                 <div className="absolute inset-0 z-0 pointer-events-none">
@@ -111,6 +153,7 @@ export default function VoucherPage() {
                     <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full -translate-x-1/2 translate-y-1/2" />
                 </div>
 
+                {/* ── ADVERT SECTIION ────────────────────────────────────────── */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -152,6 +195,20 @@ export default function VoucherPage() {
                             transition={{ delay: 0.2 }}
                             className="lg:col-span-5 bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-slate-200 border border-slate-100"
                         >
+                            useEffect(() => {
+                                    const lastSeen = localStorage.getItem("zantexHiringAd");
+                                
+                                    if (!lastSeen || Date.now() - Number(lastSeen) > 24 * 60 * 60 * 1000) {
+                                        setShowAd(true);
+                                
+                                        const timer = setTimeout(() => {
+                                            setShowAd(false);
+                                            localStorage.setItem("zantexHiringAd", Date.now().toString());
+                                        }, 5000);
+                                
+                                        return () => clearTimeout(timer);
+                                    }
+                                }, []);
                             <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                                 {/* Full Name */}
                                 <div className="space-y-3">
