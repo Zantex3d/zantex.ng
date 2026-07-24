@@ -89,7 +89,7 @@ export default function VoucherPage() {
             setShowHiringAd(true);
             timer = window.setTimeout(() => {
                 setShowHiringAd(false);
-            }, 4000);
+            }, 20000);
         }
 
         return () => {
