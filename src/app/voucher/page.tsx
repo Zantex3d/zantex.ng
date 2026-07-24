@@ -83,7 +83,7 @@ export default function VoucherPage() {
                 timer = window.setTimeout(() => {
                     setShowHiringAd(false);
                     window.localStorage.setItem(AD_STORAGE_KEY, String(Date.now()));
-                }, 4000);
+                }, 30000);
             }
         } catch {
             setShowHiringAd(true);
