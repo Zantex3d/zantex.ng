@@ -1,14 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Wifi, Smartphone, Check, ArrowRight, MessageCircle, Clock, Zap, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const AD_STORAGE_KEY = 'zantexHiringAd';
 
 const plans = [
     {
@@ -68,45 +65,6 @@ export default function VoucherPage() {
     const [selectedPlan, setSelectedPlan] = useState(plans[1].id);
 
     const [loading, setLoading] = useState(false);
-    const [showHiringAd, setShowHiringAd] = useState(false);
-
-    useEffect(() => {
-        const twentyFourHours = 24 * 60 * 60 * 1000;
-        let timer: number | null = null;
-
-        try {
-            const lastSeen = window.localStorage.getItem(AD_STORAGE_KEY);
-            const shouldShow = !lastSeen || Date.now() - Number(lastSeen) >= twentyFourHours;
-
-            if (shouldShow) {
-                setShowHiringAd(true);
-                timer = window.setTimeout(() => {
-                    setShowHiringAd(false);
-                    window.localStorage.setItem(AD_STORAGE_KEY, String(Date.now()));
-                }, 30000);
-            }
-        } catch {
-            setShowHiringAd(true);
-            timer = window.setTimeout(() => {
-                setShowHiringAd(false);
-            }, 20000);
-        }
-
-        return () => {
-            if (timer) {
-                window.clearTimeout(timer);
-            }
-        };
-    }, []);
-
-    const handleCloseHiringAd = () => {
-        setShowHiringAd(false);
-        try {
-            // window.localStorage.setItem(AD_STORAGE_KEY, String(Date.now()));
-        } catch {
-            // Ignore localStorage access issues.
-        }
-    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -145,46 +103,6 @@ export default function VoucherPage() {
     return (
         <main className="min-h-screen bg-white">
             <Navbar />
-
-            <AnimatePresence>
-                {showHiringAd && (
-                    <motion.div
-                        initial={{ y: -120, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -120, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: 'easeOut' }}
-                        className="fixed top-20 md:top-24 inset-x-0 z-[120] px-4 pointer-events-none"
-                    >
-                        <div className="mx-auto w-full max-w-3xl pointer-events-auto">
-                            <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-slate-200">
-                                <button
-                                    type="button"
-                                    onClick={handleCloseHiringAd}
-                                    aria-label="Close advertisement"
-                                    className="absolute top-2 right-2 z-10 h-8 w-8 rounded-full bg-black/65 text-white text-sm font-bold hover:bg-black/80 transition-colors"
-                                >
-                                    ✕
-                                </button>
-                                <a
-                                    href="https://wa.me/2349068702472"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block"
-                                >
-                                    <Image
-                                        src="/images/ad.png"
-                                        alt="Zantex hiring advertisement"
-                                        width={1200}
-                                        height={500}
-                                        priority
-                                        className="h-auto w-full"
-                                    />
-                                </a>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             {/* ── Hero Section ────────────────────────────────────────── */}
             <section className="relative pt-32 md:pt-48 pb-20 overflow-hidden bg-[#2f455c] text-white">
