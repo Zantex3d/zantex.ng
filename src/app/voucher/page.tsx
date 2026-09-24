@@ -173,7 +173,7 @@ export default function VoucherPage() {
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="nabilah123@example.com"
+                                        placeholder="nabilah143@example.com"
                                         className="w-full px-4 sm:px-6 py-4 rounded-2xl bg-slate-50 border-2 border-transparent focus:border-[#34f5c6] focus:bg-white outline-none transition-all font-bold text-[#2f455c]"
                                         required
                                     />
