@@ -3,45 +3,41 @@
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ExternalLink, Github } from 'lucide-react';
+import { ArrowUpRight, Cpu, Sun, Wifi } from 'lucide-react';
 import Link from 'next/link';
 
 const projects = [
   {
-    title: 'Quantum Dashboard',
-    category: 'Digital Service',
-    image: 'https://images.unsplash.com/photo-1551288049-bb8c803er9a8?q=80&w=2670&auto=format&fit=crop',
-    description: 'A high-performance analytics platform for global logistics tracking.',
+    title: 'UNIMAID hostel connectivity',
+    category: 'Campus and hostel connectivity',
+    context: 'University of Maiduguri',
+    service: 'Hostel Wi-Fi',
+    icon: Wifi,
+    description: 'Zantex has deployed internet connectivity across all hostels at the University of Maiduguri.',
   },
   {
-    title: 'Smart Power Grid',
-    category: 'Electrical Engineering',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2670&auto=format&fit=crop',
-    description: 'Industrial-scale solar integration and power management system.',
+    title: 'UMTH hostel connectivity',
+    category: 'Campus and hostel connectivity',
+    context: 'University of Maiduguri Teaching Hospital',
+    service: 'Hostel Wi-Fi',
+    icon: Wifi,
+    description: 'Zantex has deployed internet connectivity across all hostels at the University of Maiduguri Teaching Hospital.',
   },
   {
-    title: 'Vantage Mobile App',
-    category: 'Mobile Development',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2670&auto=format&fit=crop',
-    description: 'Seamless user experience for premium e-commerce services.',
+    title: 'Solar power installations',
+    category: 'Solar and renewable energy',
+    context: 'Solar installation experience across Zantex projects',
+    service: 'Solar installation',
+    icon: Sun,
+    description: 'Zantex has installed solar systems across its projects, adding practical renewable-energy experience to its engineering work.',
   },
   {
-    title: 'IoT Training Kit',
-    category: 'Electronics & IoT',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop',
-    description: 'Advanced Arduino-based learning system for tech enthusiasts.',
-  },
-  {
-    title: 'Zantex Zone Smart Ordering',
-    category: 'Restaurant Tech',
-    image: 'https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=2670&auto=format&fit=crop',
-    description: 'Interactive menu and automated food management system for the Zantex dining experience.',
-  },
-  {
-    title: 'Starlink Enterprise Setup',
-    category: 'Infrastructure',
-    image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2670&auto=format&fit=crop',
-    description: 'High-speed satellite internet deployment for remote locations.',
+    title: 'Digital and electronics development',
+    category: 'Digital development and electronics',
+    context: 'Digital development and electronics service capability',
+    service: 'IoT development',
+    icon: Cpu,
+    description: 'Explore Zantex digital, IoT and electronics services, or contact the team to discuss a project suited to your requirements.',
   }
 ];
 
@@ -82,38 +78,30 @@ export default function PortfolioPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group cursor-pointer"
+                className="group"
               >
-                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-6 shadow-xl shadow-slate-200/50">
-                  <img 
-                    src={p.image} 
-                    alt={p.title} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2f455c]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="absolute bottom-8 left-8 right-8 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="flex gap-4">
-                       <button className="p-3 bg-white rounded-full text-[#2f455c] hover:bg-[#34f5c6] transition-colors shadow-lg">
-                          <ExternalLink className="w-5 h-5" />
-                       </button>
-                       <button className="p-3 bg-white rounded-full text-[#2f455c] hover:bg-[#34f5c6] transition-colors shadow-lg">
-                          <Github className="w-5 h-5" />
-                       </button>
-                    </div>
+                <div className="relative mb-6 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[2.5rem] bg-[#2f455c] shadow-xl shadow-slate-200/50">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#34f5c6]/30 via-transparent to-black/20" />
+                  <p.icon className="relative h-20 w-20 text-[#34f5c6]" aria-hidden="true" />
+                  <div className="absolute bottom-6 left-6 rounded-full border border-white/20 bg-[#2f455c]/70 px-4 py-2 text-xs font-bold text-white backdrop-blur">
+                    {p.category}
                   </div>
                 </div>
 
                 <div className="px-4">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#34f5c6] mb-2 inline-block">
-                    {p.category}
-                  </span>
-                  <h3 className="text-xl font-black text-[#2f455c] mb-2 group-hover:text-[#34f5c6] transition-colors">
+                  <p className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-500">{p.context}</p>
+                  <h3 className="mb-2 text-xl font-black text-[#2f455c]">
                     {p.title}
                   </h3>
                   <p className="text-slate-500 text-sm font-medium">
                     {p.description}
                   </p>
+                  <Link
+                    href={`/quote?service=${encodeURIComponent(p.service)}`}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-black text-[#2f455c] hover:text-[#168f78] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#168f78]"
+                  >
+                    Discuss a related project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
                 </div>
               </motion.div>
             ))}

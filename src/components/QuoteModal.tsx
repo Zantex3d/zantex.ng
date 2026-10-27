@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { X, Send, ChevronDown, MessageCircle } from 'lucide-react';
+import { buildQuoteMessage, getWhatsAppUrl, WHATSAPP_CONTACTS } from '@/lib/whatsapp';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -13,15 +14,23 @@ const NAVY = '#2f455c';
 const TEAL = '#34f5c6';
 
 const divisions = [
-  'Zantex Digital — Web, Mobile & Branding',
-  'Zantex Electrical — Installations & Power',
-  'Zantex Electronics — Arduino, Robotics & IoT',
-  'Zantex Zone — Restaurant & Dining',
-  'General Enquiry',
+  'Electrical installation',
+  'Solar installation',
+  'Networking',
+  'Starlink installation',
+  'Hostel Wi-Fi',
+  'Web development',
+  'Mobile development',
+  'AI and robotics',
+  'IoT development',
+  'Electronics',
+  'Technical training',
+  'Other',
 ];
 
 export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [validationError, setValidationError] = useState('');
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -30,6 +39,21 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     division: '',
     message: '',
   });
+  const whatsappMessage = buildQuoteMessage({
+    name: form.name.trim(),
+    phone: form.phone.trim(),
+    email: form.email.trim(),
+    company: form.company.trim(),
+    service: form.division,
+    message: form.message.trim(),
+  });
+
+  const handleClose = () => {
+    setSubmitted(false);
+    setValidationError('');
+    setForm({ name: '', email: '', phone: '', company: '', division: '', message: '' });
+    onClose();
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -39,13 +63,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
+    if (!form.name.trim() || !form.phone.trim() || !form.division || !form.message.trim()) {
+      setValidationError('Please enter your name, phone number, service and project details.');
+      return;
+    }
+    setValidationError('');
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: '', email: '', phone: '', company: '', division: '', message: '' });
-      onClose();
-    }, 2800);
   };
 
   return (
@@ -60,7 +83,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"
-            onClick={onClose}
+            onClick={handleClose}
           />
 
           {/* Dialog */}
@@ -83,7 +106,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               >
                 {/* Close */}
                 <button
-                  onClick={onClose}
+                  onClick={handleClose}
                   className="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
                 >
                   <X className="w-4 h-4" />
@@ -105,7 +128,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   Request a <span style={{ color: TEAL }}>Quote</span>
                 </h2>
                 <p className="text-white/50 text-sm mt-2 font-medium">
-                  Tell us about your project and we'll get back to you within 24 hours.
+                  Share your requirements and choose a WhatsApp contact to send your enquiry.
                 </p>
               </div>
 
@@ -124,12 +147,26 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         className="w-16 h-16 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: `${TEAL}20` }}
                       >
-                        <CheckCircle2 className="w-9 h-9" style={{ color: TEAL }} />
+                        <MessageCircle className="w-9 h-9" style={{ color: TEAL }} />
                       </div>
-                      <h3 className="text-xl font-black" style={{ color: NAVY }}>Request Sent!</h3>
+                      <h3 className="text-xl font-black" style={{ color: NAVY }}>Your enquiry is ready</h3>
                       <p className="text-slate-500 text-sm text-center max-w-xs font-medium">
-                        Thanks, <strong style={{ color: NAVY }}>{form.name}</strong>! We've received your request and will be in touch shortly.
+                        Choose a WhatsApp number to send your enquiry. It has not been sent until you send it in WhatsApp.
                       </p>
+                      <div className="flex w-full flex-col gap-3">
+                        {WHATSAPP_CONTACTS.map((contact) => (
+                          <a
+                            key={contact.number}
+                            href={getWhatsAppUrl(contact.number, whatsappMessage)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-xl bg-[#2f455c] px-4 py-3 text-center text-sm font-bold text-white hover:bg-[#168f78]"
+                          >
+                            <MessageCircle className="mr-2 inline h-4 w-4" aria-hidden="true" />
+                            WhatsApp {contact.label}
+                          </a>
+                        ))}
+                      </div>
                     </motion.div>
                   ) : (
                     <motion.form
@@ -166,12 +203,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         </div>
                         <div className="space-y-1.5">
                           <label className="text-[10px] font-black uppercase tracking-widest" style={{ color: NAVY }}>
-                            Email Address <span style={{ color: TEAL }}>*</span>
+                            Email Address (optional)
                           </label>
                           <input
                             type="email"
                             name="email"
-                            required
                             value={form.email}
                             onChange={handleChange}
                             placeholder="you@email.com"
@@ -192,11 +228,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
                           <label className="text-[10px] font-black uppercase tracking-widest" style={{ color: NAVY }}>
-                            Phone Number
+                            Phone Number <span style={{ color: TEAL }}>*</span>
                           </label>
                           <input
                             type="tel"
                             name="phone"
+                            required
                             value={form.phone}
                             onChange={handleChange}
                             placeholder="+234 800 000 0000"
@@ -303,11 +340,16 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         }}
                       >
                         <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        Send Request
+                        Prepare WhatsApp Enquiry
                       </button>
 
+                      {validationError && (
+                        <p role="alert" className="text-center text-sm font-semibold text-red-700">
+                          {validationError}
+                        </p>
+                      )}
                       <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-2">
-                        Typically responds within 24 hours
+                        Your enquiry is not sent until you choose a WhatsApp contact and send it.
                       </p>
                     </motion.form>
                   )}

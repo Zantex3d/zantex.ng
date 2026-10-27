@@ -9,12 +9,11 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Internet', href: '/internet' },
-  { name: 'Portfolio', href: '/portfolio' },
-  { name: 'Voucher', href: '/voucher' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Our Divisions', href: '/services#divisions' },
+  { name: 'Projects', href: '/portfolio' },
+  { name: 'Achievements', href: '/#achievements' },
+  { name: 'Internet Solutions', href: '/internet' },
   { name: 'Contact', href: '/contact' },
 ];
 

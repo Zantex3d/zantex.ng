@@ -7,18 +7,12 @@ import Link from 'next/link';
 
 const divisions = [
   {
-    title: 'Zantex Digital',
-    badge: 'Digital Solutions',
-    description: 'Elite web design, mobile apps, UI/UX design, and strategic branding for startups and premium enterprises.',
-    accent: 'bg-[#34f5c6]',
-    href: '/divisions/zantex-digital',
-  },
-  {
     title: 'Zantex Electrical',
     badge: 'Electrical Engineering',
-    description: 'Expert installations, power distribution, network design, and specialized internet infrastructure like Starlink.',
+    description: 'Electrical system planning, building installations, power distribution and solar energy solutions.',
     accent: 'bg-[#2f455c]',
     href: '/divisions/zantex-electrical',
+    external: false,
   },
   {
     title: 'Zantex Electronics',
@@ -26,13 +20,31 @@ const divisions = [
     description: 'Arduino, Robotics, and IoT training programs designed to empower the next generation of tech innovators.',
     accent: 'bg-[#34f5c6]',
     href: '/divisions/zantex-electronics',
+    external: false,
+  },
+  {
+    title: 'Zantex Internet',
+    badge: 'Connectivity & Networks',
+    description: 'Starlink, enterprise networking and campus-wide hostel connectivity infrastructure.',
+    accent: 'bg-[#2f455c]',
+    href: '/internet',
+    external: false,
+  },
+  {
+    title: 'Zantex Digital',
+    badge: 'Digital Solutions',
+    description: 'Websites, mobile applications, business software, user experience, branding and digital systems.',
+    accent: 'bg-[#34f5c6]',
+    href: '/divisions/zantex-digital',
+    external: false,
   },
   {
     title: 'Zantex Zone',
     badge: 'Restaurant & Dining',
-    description: 'A premium dining experience inside Zantex HQ, featuring smart food ordering and a curated menu system.',
+    description: 'Visit Zantex Zone, the Zantex restaurant in TH, and place an order online.',
     accent: 'bg-[#2f455c]',
-    href: '/divisions/zantex-zone',
+    href: 'https://order.zantexee.com',
+    external: true,
   },
 ];
 
@@ -73,13 +85,19 @@ export default function Services() {
           <motion.div 
             ref={containerRef}
             drag="x"
-            dragConstraints={{ right: 0, left: -600 }}
+            dragConstraints={{ right: 0, left: -1400 }}
             className="flex gap-6 cursor-grab active:cursor-grabbing overflow-x-auto lg:overflow-x-visible pb-12 lg:pb-0 no-scrollbar snap-x snap-mandatory lg:snap-none"
             dragListener={typeof window !== 'undefined' && window.innerWidth >= 1024}
           >
             {divisions.map((division, index) => (
-              <motion.div
+              <Link
                 key={division.title}
+                href={division.href}
+                target={division.external ? '_blank' : undefined}
+                rel={division.external ? 'noopener noreferrer' : undefined}
+                className="block rounded-[3rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#168f78]"
+              >
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -122,22 +140,16 @@ export default function Services() {
 
                   {/* Learn More + Icon */}
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={division.href}
-                      className="inline-flex items-center gap-2 text-xs font-black text-[#2f455c] hover:text-[#34f5c6] transition-colors group/link uppercase tracking-widest"
-                    >
-                      Explore
-                      <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                    </Link>
-                    <Link
-                      href={division.href}
-                      className="w-16 h-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-[#2f455c] group-hover:bg-[#2f455c] group-hover:text-[#34f5c6] transition-all shadow-sm active:scale-95"
-                    >
-                      <ArrowUpRight className="w-6 h-6" />
-                    </Link>
+                    <span className="text-xs font-black uppercase tracking-widest text-[#2f455c] group-hover:text-[#168f78]">
+                      {division.external ? 'Order online' : 'Explore division'}
+                    </span>
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-slate-100 bg-slate-50 text-[#2f455c] transition-all group-hover:bg-[#2f455c] group-hover:text-[#34f5c6]">
+                      <ArrowUpRight className="h-6 w-6" />
+                    </span>
                   </div>
                 </div>
               </motion.div>
+              </Link>
             ))}
           </motion.div>
 

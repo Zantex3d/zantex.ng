@@ -3,41 +3,54 @@
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowUpRight, CheckCircle2, Monitor, Zap, Cpu, UtensilsCrossed } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Monitor, Zap, Cpu, UtensilsCrossed, Wifi } from 'lucide-react';
 import Link from 'next/link';
 
 const services = [
   {
-    icon: Monitor,
-    title: 'Zantex Digital',
-    description: 'We build world-class digital products that combine stunning aesthetics with robust performance.',
-    features: ['Custom Web Applications', 'Mobile App Development (iOS/Android)', 'Premium UI/UX Design', 'Brand Identity & Strategy'],
-    color: '#34f5c6',
-    href: '/divisions/zantex-digital',
-  },
-  {
     icon: Zap,
     title: 'Zantex Electrical',
-    description: 'Specialized electrical engineering services focused on power systems and network infrastructure.',
-    features: ['Industrial Power Installations', 'Starlink & VSAT Installations', 'Solar Power Solutions', 'Network Design & Cabling'],
+    description: 'Electrical planning, building installations, power distribution, solar systems and maintenance.',
+    features: ['Electrical design and installations', 'Load assessment and power distribution', 'Solar and backup power systems', 'Maintenance and troubleshooting'],
     color: '#34f5c6',
     href: '/divisions/zantex-electrical',
+    external: false,
+  },
+  {
+    icon: Wifi,
+    title: 'Zantex Internet',
+    description: 'Connectivity infrastructure for campuses, hostels, homes and enterprise environments.',
+    features: ['Starlink installation and integration', 'Campus and hostel Wi-Fi', 'Structured and wireless networks', 'Subscriber access and voucher systems'],
+    color: '#34f5c6',
+    href: '/internet',
+    external: false,
+  },
+  {
+    icon: Monitor,
+    title: 'Zantex Digital',
+    description: 'Websites, mobile applications, business software, user experience, branding and digital systems.',
+    features: ['Web and mobile development', 'UI/UX and e-commerce', 'Business automation', 'Branding and coding lessons'],
+    color: '#34f5c6',
+    href: '/divisions/zantex-digital',
+    external: false,
   },
   {
     icon: Cpu,
     title: 'Zantex Electronics',
-    description: 'Advancing the future through embedded systems, robotics, and comprehensive IoT training.',
-    features: ['Arduino & Microcontrollers', 'Robotics Systems Design', 'IoT Product Development', 'Technical Training Programs'],
+    description: 'Practical electronics engineering, embedded systems, robotics, IoT and technical training.',
+    features: ['Arduino, ESP8266 and ESP32', 'Embedded systems and PCB prototyping', 'IoT and smart automation', 'Robotics and practical training'],
     color: '#34f5c6',
     href: '/divisions/zantex-electronics',
+    external: false,
   },
   {
     icon: UtensilsCrossed,
     title: 'Zantex Zone',
-    description: 'Experience the intersection of fine dining and technology in our smart restaurant environments.',
-    features: ['Smart Food Systems', 'Curated Menu Experience', 'Tech-Enabled Dining', 'Hospitality Excellence'],
+    description: 'Zantex Zone is the company’s restaurant in TH. Visit its online ordering platform to view the menu and order.',
+    features: ['Restaurant located in TH', 'Online menu and ordering', 'Order directly from Zantex Zone'],
     color: '#34f5c6',
-    href: '/divisions/zantex-zone',
+    href: 'https://order.zantexee.com',
+    external: true,
   }
 ];
 
@@ -66,19 +79,25 @@ export default function ServicesPage() {
             transition={{ delay: 0.1 }}
             className="text-slate-300 text-base md:text-xl max-w-3xl mx-auto font-medium"
           >
-            From high-end software development to complex electrical systems, 
-            Zantex delivers engineering excellence across all sectors.
+            Explore Zantex services across electrical systems, solar energy, connectivity,
+            digital development and electronics.
           </motion.p>
         </div>
       </section>
 
       {/* ── Services Grid ────────────────────────────────────── */}
-      <section className="py-24 md:py-32">
+      <section id="divisions" className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((s, i) => (
-              <motion.div
+              <Link
                 key={s.title}
+                href={s.href}
+                target={s.external ? '_blank' : undefined}
+                rel={s.external ? 'noopener noreferrer' : undefined}
+                className="block rounded-[3rem] md:rounded-[3.5rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#168f78]"
+              >
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -109,20 +128,15 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="pt-10 flex items-center justify-between">
-                  <Link
-                    href={s.href}
-                    className="text-sm font-black uppercase tracking-widest text-[#2f455c] group-hover:text-[#34f5c6] transition-colors"
-                  >
-                    View Division
-                  </Link>
-                  <Link
-                    href={s.href}
-                    className="w-14 h-14 rounded-full bg-white border border-slate-200 flex items-center justify-center text-[#2f455c] group-hover:bg-[#34f5c6] group-hover:border-[#34f5c6] transition-all shadow-sm"
-                  >
+                  <span className="text-sm font-black uppercase tracking-widest text-[#2f455c] transition-colors group-hover:text-[#34f5c6]">
+                    {s.external ? 'Order online' : 'Explore services'}
+                  </span>
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 bg-white text-[#2f455c] shadow-sm transition-all group-hover:border-[#34f5c6] group-hover:bg-[#34f5c6]">
                     <ArrowUpRight className="w-6 h-6" />
-                  </Link>
+                  </span>
                 </div>
               </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -140,7 +154,7 @@ export default function ServicesPage() {
             Ready to enhance <br /> your vision?
           </h2>
           <p className="text-[#2f455c]/70 max-w-xl mx-auto font-bold text-lg">
-            Let's discuss how our multidisciplinary team can help you achieve extraordinary results.
+            Let&apos;s discuss how our multidisciplinary team can help you achieve extraordinary results.
           </p>
           <div className="pt-4">
             <Link href="/quote">

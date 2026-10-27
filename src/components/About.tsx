@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Zap, ShieldCheck, Globe } from 'lucide-react';
+import { ArrowRight, Zap, Wifi } from 'lucide-react';
 
 export default function About() {
   return (
@@ -25,7 +25,7 @@ export default function About() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black text-[#2f455c] tracking-tight"
           >
-            Why tech visionaries choose Zantex
+            Practical engineering and technology solutions
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
@@ -34,7 +34,7 @@ export default function About() {
             transition={{ delay: 0.2 }}
             className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed"
           >
-            Exceptional services and unparalleled engineering that set the standard for digital transformation and infrastructure.
+            Zantex works across infrastructure, connectivity, software and electronics to address practical needs for people and organisations.
           </motion.p>
         </div>
 
@@ -51,13 +51,13 @@ export default function About() {
             <div className="relative z-10 w-full aspect-[4/5] rounded-3xl overflow-hidden mb-10 shadow-sm border border-white">
                <img 
                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2670&auto=format&fit=crop" 
-                 alt="Premium Engineering" 
+                 alt="Engineer working with technical equipment"
                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                />
             </div>
             <div className="relative z-10 space-y-6">
               <h3 className="text-2xl md:text-3xl font-black text-[#2f455c] leading-[1.1] tracking-tight">
-                Handcrafted by master engineers to power the future of global enhancement.
+                Integrated engineering, connectivity and digital expertise for practical needs.
               </h3>
               <Link
                 href="/about"
@@ -77,7 +77,7 @@ export default function About() {
             
             {/* Top Row: Two Small Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
-              {/* Trusted Card */}
+              {/* Electrical and solar capability */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -85,15 +85,15 @@ export default function About() {
                 transition={{ delay: 0.1 }}
                 className="bg-slate-50 rounded-[2.5rem] p-8 flex flex-col justify-between overflow-hidden relative border border-slate-100/50"
               >
-                <div className="w-full aspect-video rounded-2xl overflow-hidden mb-6 shadow-sm border border-white">
-                  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2670&auto=format&fit=crop" className="w-full h-full object-cover" />
+                <div className="mb-6 flex h-28 items-center justify-center rounded-2xl bg-[#2f455c] text-[#34f5c6]">
+                  <Zap className="h-12 w-12" aria-hidden="true" />
                 </div>
                 <h4 className="text-xl font-black text-[#2f455c] tracking-tight">
-                  Trusted by <span className="text-slate-400 font-normal">top brands & companies.</span>
+                  Electrical engineering <span className="font-normal text-slate-400">and solar installation experience.</span>
                 </h4>
               </motion.div>
 
-              {/* 100% / Stat Card */}
+              {/* Campus connectivity */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -102,14 +102,14 @@ export default function About() {
                 className="bg-slate-50 rounded-[2.5rem] p-8 flex items-center gap-6 overflow-hidden relative border border-slate-100/50"
               >
                 <div className="space-y-2">
-                  <div className="text-5xl font-black text-[#2f455c]">99%</div>
-                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">
-                    Uptime on Zantex <br /> network infrastructure.
+                  <div className="text-lg font-black text-[#2f455c]">Campus connectivity</div>
+                  <div className="text-sm font-medium leading-relaxed text-slate-500">
+                    Hostel-wide internet deployments at UNIMAID and UMTH.
                   </div>
                 </div>
                 <div className="flex-1 h-32 flex justify-end">
                    <div className="w-20 h-full rounded-2xl bg-[#34f5c6]/10 flex items-center justify-center">
-                      <ShieldCheck className="w-10 h-10 text-[#34f5c6] animate-pulse" />
+                      <Wifi className="w-10 h-10 text-[#168f78]" aria-hidden="true" />
                    </div>
                 </div>
               </motion.div>
@@ -125,14 +125,15 @@ export default function About() {
             >
               <div className="p-8 md:p-12 md:w-3/5 space-y-6">
                 <h3 className="text-2xl md:text-3xl font-black text-[#2f455c] tracking-tight leading-[1.1]">
-                  Powering innovation through <span className="text-slate-400 font-normal">advanced engineering, digital crafts and electronics mastery.</span>
+                  Practical projects across <span className="text-slate-400 font-normal">electrical systems, renewable energy, connectivity, software and electronics.</span>
                 </h3>
               </div>
               <div className="md:w-2/5 h-full relative">
                  <img 
                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2672&auto=format&fit=crop" 
-                   alt="Tech Transformation" 
+                   alt="Laptop displaying a software dashboard"
                    className="w-full h-full object-cover"
+                   loading="lazy"
                  />
                  <div className="absolute inset-0 bg-gradient-to-r from-slate-50 to-transparent" />
               </div>
@@ -144,6 +145,7 @@ export default function About() {
 
       {/* ── Make Conversations Happen Banner ────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 mt-32">
+        <Link href="/quote" className="block rounded-[2.5rem] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#168f78]">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -167,10 +169,11 @@ export default function About() {
 
           <div className="relative z-10 text-center">
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight drop-shadow-sm">
-              Make Conversations <span className="text-[#34f5c6]">Happen</span>
+              Discuss your project <span className="text-[#34f5c6]">with Zantex</span>
             </h2>
           </div>
         </motion.div>
+        </Link>
       </div>
     </section>
   );

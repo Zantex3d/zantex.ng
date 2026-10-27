@@ -20,10 +20,6 @@ import {
   Bot,
   Layers,
   UtensilsCrossed,
-  ChefHat,
-  Coffee,
-  ShoppingBag,
-  Clock,
 } from 'lucide-react';
 
 // ─── Division Data ─────────────────────────────────────────────────────────────
@@ -50,7 +46,7 @@ const divisions: Record<
     heading: ['Building the', 'future of digital'],
     accentLine: 'experiences.',
     description:
-      'Elite web design, mobile apps, UI/UX and strategic branding for startups and premium enterprises — built to stand out.',
+      'Website and mobile development, digital products, user experience, business software and branding services.',
     cta: 'Start a Project',
     accentClass: 'bg-[#34f5c6]',
     accentTextClass: 'text-[#2f455c]',
@@ -59,16 +55,16 @@ const divisions: Record<
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
     about: [
-      'Zantex Digital is our premier digital solutions division, crafting world-class web applications, mobile platforms, and brand identities for startups and enterprises alike.',
-      'From pixel-perfect UI/UX design to scalable backend systems, we bring vision to life with speed and precision — delivering products that stand out in the market.',
+      'Zantex Digital provides web and mobile development, UI/UX, e-commerce, business software, branding and digital systems.',
+      'The division works with clients to plan and develop digital products suited to their business needs.',
     ],
     services: [
-      { icon: Monitor, title: 'Web Design & Development', description: 'Stunning, high-performance websites and web applications built with modern frameworks.' },
-      { icon: Smartphone, title: 'Mobile App Development', description: 'iOS and Android apps built natively or cross-platform with React Native and Flutter.' },
-      { icon: Palette, title: 'UI/UX Design', description: 'User-centred design that looks great and drives conversions through intuitive experiences.' },
-      { icon: Globe, title: 'Strategic Branding', description: 'Full brand identity systems — logos, colour palettes, typography, and brand guidelines.' },
-      { icon: Layers, title: 'SaaS Platforms', description: 'Scalable software-as-a-service solutions with robust architecture and clean code.' },
-      { icon: Bot, title: 'AI-Powered Tools', description: 'Integrating AI and automation into your digital products for smarter workflows.' },
+      { icon: Monitor, title: 'Web Development', description: 'Websites, web applications and business platforms.' },
+      { icon: Smartphone, title: 'Mobile Applications', description: 'Mobile app development for business and service needs.' },
+      { icon: Palette, title: 'UI/UX and E-commerce', description: 'User experience design and online store development.' },
+      { icon: Globe, title: 'Branding and Graphic Design', description: 'Digital brand identity, graphic design and marketing support.' },
+      { icon: Layers, title: 'Business Systems', description: 'Database development, automation and system integration.' },
+      { icon: Bot, title: 'Programming Lessons', description: 'Coding lessons and practical digital technology training.' },
     ],
   },
 
@@ -77,7 +73,7 @@ const divisions: Record<
     heading: ['Engineering power', 'infrastructure'],
     accentLine: 'that lasts.',
     description:
-      'Expert installations, power distribution, network design, and specialized internet infrastructure including Starlink.',
+      'Electrical system design, building installations, solar power solutions, load assessment and maintenance.',
     cta: 'Get a Quote',
     accentClass: 'bg-amber-500',
     accentTextClass: 'text-amber-600',
@@ -86,16 +82,16 @@ const divisions: Record<
     image:
       'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2669&auto=format&fit=crop',
     about: [
-      'Zantex Electrical is our power and infrastructure division, delivering expert electrical installations, power distribution systems, and cutting-edge internet connectivity solutions.',
-      'From Starlink installations to full network infrastructure design, Zantex Electrical ensures your operations stay connected and powered at all times.',
+      'Zantex Electrical provides electrical design, building wiring, power distribution, solar energy systems and electrical maintenance.',
+      'The team can plan electrical and solar work separately or scope them together as an integrated project.',
     ],
     services: [
-      { icon: Zap, title: 'Electrical Installations', description: 'Professional wiring and electrical setup for homes, offices, and industrial facilities.' },
-      { icon: Server, title: 'Power Distribution', description: 'Reliable power distribution systems designed for maximum uptime and efficiency.' },
-      { icon: Network, title: 'Network Infrastructure', description: 'End-to-end network cabling, switching, and structured cabling for enterprise environments.' },
-      { icon: Wifi, title: 'Starlink & ISP Setup', description: 'Expert installation and configuration of Starlink and other internet service solutions.' },
-      { icon: Layers, title: 'Solar & Alternative Power', description: 'Solar panel systems and alternative energy solutions for sustainable operations.' },
-      { icon: Monitor, title: 'CCTV & Security', description: 'Professional security camera installation and monitoring system setup.' },
+      { icon: Zap, title: 'Electrical Design and Installation', description: 'Building wiring, lighting, power distribution and protection systems.' },
+      { icon: Server, title: 'Load Assessment and Costing', description: 'Electrical load calculations, system planning and installation costing.' },
+      { icon: Network, title: 'Electrical Maintenance', description: 'Troubleshooting, maintenance and upgrades for electrical systems.' },
+      { icon: Layers, title: 'Solar System Design', description: 'Solar sizing, energy audits, load analysis and backup-power planning.' },
+      { icon: Wifi, title: 'Solar Installation', description: 'Solar panels, inverters, batteries and hybrid or off-grid systems.' },
+      { icon: Zap, title: 'Solar Maintenance', description: 'Solar system maintenance, upgrades and expansion.' },
     ],
   },
 
@@ -113,26 +109,25 @@ const divisions: Record<
     image:
       'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop',
     about: [
-      'Zantex Electronics is our training and academy division, offering hands-on programmes in Arduino, Robotics, IoT, and electronics engineering for the next generation of innovators.',
-      'Our instructors are industry veterans who bring real-world experience into every session, ensuring students graduate ready to create, build, and innovate.',
+      'Zantex Electronics offers practical work across embedded systems, Arduino, ESP devices, Raspberry Pi, robotics, AI, IoT and electronics training.',
+      'Training and project work focus on applying electronics and software concepts to practical builds.',
     ],
     services: [
-      { icon: Cpu, title: 'Arduino Programming', description: 'Beginner to advanced Arduino training covering programming, sensors, and hardware interfacing.' },
+      { icon: Cpu, title: 'Arduino, ESP and Raspberry Pi', description: 'Microcontroller and single-board computer development for electronics projects.' },
       { icon: Bot, title: 'Robotics Engineering', description: 'Hands-on robotics courses teaching design, build, and programming of autonomous systems.' },
       { icon: Wifi, title: 'IoT Development', description: 'Internet of Things training covering connected devices, cloud integration, and data systems.' },
-      { icon: BookOpen, title: 'Electronics Fundamentals', description: 'Core electronics theory — circuits, components, soldering, and PCB design skills.' },
-      { icon: Layers, title: 'Project-Based Learning', description: 'Real-world capstone projects that push students to apply skills in meaningful contexts.' },
-      { icon: Globe, title: 'Certification Programmes', description: 'Recognised certifications that validate technical competence in electronics and IoT.' },
+      { icon: BookOpen, title: 'Electronics and PCB Design', description: 'Electronics fundamentals, circuit design and PCB prototyping.' },
+      { icon: Layers, title: 'Smart Systems and Automation', description: 'IoT, sensor-based monitoring, smart-home automation and AI projects.' },
     ],
   },
 
   'zantex-zone': {
-    label: 'Restaurant & Dining',
-    heading: ['A premium dining', 'experience inside'],
-    accentLine: 'Zantex Zone.',
+    label: 'Zantex Zone Restaurant',
+    heading: ['Visit Zantex', 'Zone in TH'],
+    accentLine: 'Order online.',
     description:
-      'Smart food ordering, a curated menu, and an unforgettable atmosphere — where great food meets great technology.',
-    cta: 'Visit Us',
+      'Zantex Zone is the company’s restaurant in TH. Visit its online ordering platform to view the menu and place an order.',
+    cta: 'Order Online',
     accentClass: 'bg-rose-500',
     accentTextClass: 'text-rose-500',
     accentLightClass: 'bg-rose-50',
@@ -140,16 +135,11 @@ const divisions: Record<
     image:
       'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2670&auto=format&fit=crop',
     about: [
-      'Zantex Zone is the premium in-house dining division of Zantex. We combine culinary excellence with cutting-edge smart ordering technology to deliver an unmatched dining experience.',
-      'Whether you are grabbing lunch, hosting a meeting, or celebrating a milestone — Zantex Zone offers a warm, premium environment with dishes crafted to impress every time.',
+      'Zantex Zone is a restaurant located in TH. Its dedicated online ordering website is the place to view the current menu and place an order.',
     ],
     services: [
-      { icon: UtensilsCrossed, title: 'Premium Dining Experience', description: 'A curated in-house dining environment designed for comfort, quality, and a memorable meal.' },
-      { icon: Smartphone, title: 'Smart Food Ordering', description: 'Order effortlessly via our digital menu system — fast, intuitive, and built for modern diners.' },
-      { icon: ChefHat, title: 'Curated Menu', description: 'Thoughtfully prepared dishes featuring local favourites and international flavours by expert chefs.' },
-      { icon: Coffee, title: 'Beverages & Refreshments', description: 'Freshly prepared drinks, smoothies, and hot beverages to complement every meal.' },
-      { icon: ShoppingBag, title: 'Takeaway & Packaging', description: 'Premium eco-friendly packaging for takeaway orders — great food, great presentation.' },
-      { icon: Clock, title: 'Quick Turnaround', description: 'Efficient kitchen operations ensure your order is ready swiftly without compromising quality.' },
+      { icon: UtensilsCrossed, title: 'Restaurant in TH', description: 'Zantex Zone is a restaurant serving customers in TH.' },
+      { icon: Smartphone, title: 'Online Ordering', description: 'Use the Zantex Zone ordering website to view the menu and order.' },
     ],
   },
 };
@@ -159,6 +149,15 @@ const divisions: Record<
 export default function DivisionPage() {
   const { slug } = useParams<{ slug: string }>();
   const d = divisions[slug];
+  const isRestaurant = slug === 'zantex-zone';
+  const serviceBySlug: Record<string, string> = {
+    'zantex-digital': 'Web development',
+    'zantex-electrical': 'Electrical installation',
+    'zantex-electronics': 'Electronics',
+  };
+  const primaryHref = isRestaurant
+    ? 'https://order.zantexee.com'
+    : `/quote?service=${encodeURIComponent(serviceBySlug[slug] ?? 'Other')}`;
 
   if (!d) notFound();
 
@@ -207,8 +206,10 @@ export default function DivisionPage() {
                 {d.description}
               </p>
               <Link
-                href="/quote"
-                className={`inline-flex items-center gap-3 ${d.accentClass} ${slug === 'zantex-digital' ? d.accentTextClass : 'text-white'} font-black p-1.5 pr-6 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-lg group`}
+                href={primaryHref}
+                target={isRestaurant ? '_blank' : undefined}
+                rel={isRestaurant ? 'noopener noreferrer' : undefined}
+                className={`inline-flex items-center gap-3 ${d.accentClass} ${slug === 'zantex-digital' || slug === 'zantex-electrical' || isRestaurant ? 'text-[#2f455c]' : 'text-white'} font-black p-1.5 pr-6 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-lg group`}
               >
                 <span className="w-10 h-10 rounded-full bg-white/40 flex items-center justify-center group-hover:bg-white/60 transition-colors">
                   <ArrowUpRight className="w-5 h-5" />
@@ -227,7 +228,7 @@ export default function DivisionPage() {
           >
             <img
               src={d.image}
-              alt={`Zantex ${slug}`}
+              alt={`${d.label} representative image`}
               className="w-full h-full object-cover"
             />
           </motion.div>
@@ -256,8 +257,10 @@ export default function DivisionPage() {
               </div>
               <div className="mt-10 flex gap-4">
                 <Link
-                  href="/quote"
-                  className={`inline-flex items-center gap-2 ${d.accentClass} ${slug === 'zantex-digital' ? d.accentTextClass : 'text-white'} font-black px-6 py-3 rounded-full text-sm hover:opacity-90 active:scale-95 transition-all shadow-sm`}
+                  href={primaryHref}
+                  target={isRestaurant ? '_blank' : undefined}
+                  rel={isRestaurant ? 'noopener noreferrer' : undefined}
+                  className={`inline-flex items-center gap-2 ${d.accentClass} ${slug === 'zantex-digital' || slug === 'zantex-electrical' || isRestaurant ? 'text-[#2f455c]' : 'text-white'} font-black px-6 py-3 rounded-full text-sm hover:opacity-90 active:scale-95 transition-all shadow-sm`}
                 >
                   {d.cta}
                 </Link>
@@ -288,7 +291,7 @@ export default function DivisionPage() {
                   {d.label}
                 </p>
                 <p className={`text-2xl font-black ${d.accentTextClass} leading-snug`}>
-                  One of Zantex's core divisions, delivering excellence across every project.
+                  Practical services shaped around each client’s project requirements.
                 </p>
               </div>
             </motion.div>

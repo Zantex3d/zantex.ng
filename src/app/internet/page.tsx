@@ -11,19 +11,19 @@ const solutions = [
     icon: Globe,
     title: 'Starlink Enterprise',
     description: 'High-speed, low-latency satellite internet for businesses in remote locations. Professional installation and management.',
-    features: ['Professional Mounting', 'Network Integration', '247 Monitoring', 'Static IP Options'],
+    features: ['Installation planning', 'Network integration', 'Connectivity support', 'Site-specific setup'],
   },
   {
     icon: Radio,
     title: 'VSAT Solutions',
     description: 'Reliable satellite communication for critical infrastructure and enterprises requiring dedicated bandwidth.',
-    features: ['Dedicated Bandwidth', 'Secure VPN', 'Auto-Deployment Antennas', 'Scalable Plans'],
+    features: ['Connectivity planning', 'Equipment setup', 'Network integration', 'Technical support'],
   },
   {
     icon: Wifi,
     title: 'Campus Wi-Fi',
     description: 'End-to-end wireless infrastructure for estates, hospitals, and educational institutions.',
-    features: ['Mesh Networking', 'User Management', 'Content Filtering', 'High Concurency'],
+    features: ['Wireless network design', 'User access management', 'Campus connectivity', 'Network troubleshooting'],
   }
 ];
 
@@ -72,7 +72,7 @@ export default function InternetPage() {
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap gap-4"
               >
-                <Link href="/quote">
+                <Link href="/quote?service=Starlink%20installation">
                   <button className="bg-[#34f5c6] text-[#2f455c] px-10 py-4 rounded-2xl font-black text-sm hover:scale-105 transition-all shadow-xl shadow-[#34f5c6]/10">
                     Get an Installation Quote
                   </button>
@@ -135,7 +135,7 @@ export default function InternetPage() {
                 </div>
                 
                 <div className="pt-12">
-                  <Link href="/quote">
+                  <Link href="/quote?service=Networking">
                     <button className="flex items-center gap-2 text-xs font-black text-[#2f455c] uppercase tracking-widest hover:gap-4 transition-all">
                       Consultation <ArrowRight className="w-4 h-4 text-[#34f5c6]" />
                     </button>
@@ -165,8 +165,8 @@ export default function InternetPage() {
                     <Zap className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-black mb-1">Professional Grade</h4>
-                    <p className="text-white/50 text-sm font-medium">We use industrial mounting equipment and shielded cabling for every setup.</p>
+                    <h4 className="text-white font-black mb-1">Planned Installation</h4>
+                    <p className="text-white/50 text-sm font-medium">Equipment placement and network integration are planned around the site and its connectivity needs.</p>
                   </div>
                 </div>
                 <div className="flex gap-6">
@@ -174,8 +174,8 @@ export default function InternetPage() {
                     <Shield className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-black mb-1">Secure Networking</h4>
-                    <p className="text-white/50 text-sm font-medium">Built-in firewall configuration and VPN routing for enterprise security.</p>
+                    <h4 className="text-white font-black mb-1">Campus Connectivity</h4>
+                    <p className="text-white/50 text-sm font-medium">Zantex has deployed connectivity across all hostels at UNIMAID and UMTH.</p>
                   </div>
                 </div>
               </div>
@@ -184,8 +184,8 @@ export default function InternetPage() {
             <div className="relative">
               <div className="bg-gradient-to-br from-[#34f5c6] to-[#2f455c] aspect-square rounded-[3rem] p-1 shadow-2xl">
                  <div className="bg-slate-900 h-full w-full rounded-[2.8rem] flex flex-col items-center justify-center p-12 text-center space-y-4">
-                    <span className="text-[#34f5c6] text-6xl font-black">99.9%</span>
-                    <span className="text-white font-bold uppercase tracking-widest text-xs opacity-50">SLA Guaranteed Uptime</span>
+                    <span className="text-[#34f5c6] text-5xl font-black">Campus Wi-Fi</span>
+                    <span className="text-white font-bold uppercase tracking-widest text-xs opacity-70">Connectivity across student hostels</span>
                  </div>
               </div>
             </div>

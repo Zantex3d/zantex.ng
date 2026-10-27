@@ -12,14 +12,13 @@ const footerLinks = {
     { name: 'Get a Quote', href: '/quote' },
   ],
   resources: [
-    { name: 'Case Studies', href: '/portfolio' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Projects', href: '/portfolio' },
+    { name: 'Achievements', href: '/#achievements' },
+    { name: 'Our Divisions', href: '/services#divisions' },
     { name: 'Support', href: '/contact' },
-    { name: 'Documentation', href: '#' },
   ],
   company: [
     { name: 'About Zantex', href: '/about' },
-    { name: 'Careers', href: '#' },
     { name: 'Contact Us', href: '/contact' },
     { name: 'Privacy Policy', href: '/privacy' },
   ],
@@ -71,8 +70,19 @@ export default function Footer() {
                 />
               </Link>
               <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-                Zantex helps teams transform complex engineering problems into clean, 
-                scalable digital solutions — everything you need in one place.
+                Zantex combines electrical engineering, solar energy, connectivity, digital
+                development and electronics to deliver practical technology solutions.
+              </p>
+              <p className="text-sm font-bold text-[#2f455c]">
+                Zantex Zone is a restaurant in TH.{' '}
+                <a
+                  href="https://order.zantexee.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#168f78] underline underline-offset-4"
+                >
+                  Order online
+                </a>
               </p>
             </div>
 

@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zantex Digital and Electronics website
 
-## Getting Started
+The website is built with Next.js App Router, React, TypeScript, Tailwind CSS and Framer Motion.
 
-First, run the development server:
+## Development
+
+Install dependencies and start the local development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the available checks and production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Main routes
 
-## Learn More
+- `/` — company overview, service divisions and verified deployment experience
+- `/about` — company profile and achievements
+- `/services` and `/divisions/[slug]` — division and service information
+- `/internet` — internet and connectivity services
+- `/portfolio` — selected deployment and service experience
+- `/quote` — quotation details prepared for WhatsApp
+- `/contact` — WhatsApp contact options
+- `/voucher` — campus Wi-Fi voucher purchase
+- `/voucher/verify` — payment verification and voucher display
+- `/privacy` and `/terms` — website policies
 
-To learn more about Next.js, take a look at the following resources:
+Quote requests are not submitted to a website backend. Visitors review their details and choose one of the listed WhatsApp contacts; the WhatsApp message is only sent after they send it in WhatsApp. Zantex Zone orders are handled by its separate ordering website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Voucher service configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The server-side voucher and payment routes require these environment variables:
 
-## Deploy on Vercel
+- `DATABASE_HOST`
+- `DATABASE_USER`
+- `DATABASE_PASSWORD`
+- `DATABASE_NAME`
+- `PAYSTACK_SECRET_KEY`
+- `TERMII_API_KEY`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Keep these values in the deployment environment or a local, untracked `.env.local` file. Never expose them in client-side code. Voucher checkout and payment verification use the existing MySQL, Paystack and Termii integrations.

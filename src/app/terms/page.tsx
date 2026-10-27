@@ -19,7 +19,7 @@ const sections = [
   {
     icon: ShieldAlert,
     title: 'Intellectual Property',
-    content: "All content, logos, designs, and code on this website are the intellectual property of Zantex and DIFINITO. Unauthorized use, reproduction, or distribution of any materials on this site is strictly prohibited.",
+    content: "Content, logos, designs, and code on this website may be protected by intellectual-property rights. Do not copy or reuse material without permission from the relevant rights holder.",
   },
   {
     icon: CheckCircle2,
@@ -99,7 +99,7 @@ export default function TermsPage() {
               understood, and agree to be bound by these terms.
             </p>
             <div className="p-6 bg-white rounded-2xl border border-slate-100 italic text-slate-400 text-sm">
-              Note: This document is provided for informational purposes as part of the Zantex website development.
+              Specific projects and services may be subject to separate written agreements.
             </div>
           </motion.div>
         </div>

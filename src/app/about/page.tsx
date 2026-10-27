@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 import { Target, Eye, Award, Users, Rocket, ShieldCheck } from 'lucide-react';
 
 const values = [
@@ -82,9 +83,8 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-black text-[#2f455c] mb-6">Our Mission</h2>
               <p className="text-slate-600 font-medium leading-relaxed">
-                To empower businesses and individuals by providing cutting-edge technological enhancements 
-                that drive efficiency, foster innovation, and create sustainable value in an 
-                ever-evolving global landscape.
+                To deliver practical, dependable and innovative engineering and technology solutions
+                that improve how people, businesses and institutions operate.
               </p>
             </motion.div>
 
@@ -99,11 +99,50 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-black text-white mb-6">Our Vision</h2>
               <p className="text-white/70 font-medium leading-relaxed">
-                To be the global leader in multi-sector technology integration, recognized for 
-                engineering excellence and our ability to transform complex challenges into 
-                seamless, extraordinary experiences.
+                To become a trusted multidisciplinary engineering and technology company recognised
+                for integrated solutions across electrical infrastructure, renewable energy, digital
+                innovation and intelligent electronics.
               </p>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" className="py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 max-w-3xl">
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-slate-500">
+              Deployment experience
+            </p>
+            <h2 className="text-4xl font-black tracking-tight text-[#2f455c]">
+              Engineering work with real-world reach.
+            </h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: 'UNIMAID hostel connectivity',
+                copy: 'Zantex has deployed internet connectivity across all hostels at the University of Maiduguri.',
+              },
+              {
+                title: 'UMTH hostel connectivity',
+                copy: 'Zantex has deployed internet connectivity across all hostels at the University of Maiduguri Teaching Hospital.',
+              },
+              {
+                title: 'Solar installations',
+                copy: 'Solar systems have been installed across Zantex projects, supporting the company’s practical renewable-energy experience.',
+              },
+            ].map((item) => (
+              <article key={item.title} className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                <h3 className="mb-4 text-xl font-black text-[#2f455c]">{item.title}</h3>
+                <p className="leading-relaxed text-slate-600">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link href="/portfolio" className="font-black text-[#2f455c] underline decoration-[#34f5c6] decoration-2 underline-offset-4">
+              Explore deployment experience
+            </Link>
           </div>
         </div>
       </section>
@@ -149,7 +188,7 @@ export default function AboutPage() {
         >
           <img 
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop" 
-            alt="Zantex HQ" 
+            alt="Modern building facade representing engineering and technology infrastructure"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-[#2f455c]/40 mix-blend-multiply" />

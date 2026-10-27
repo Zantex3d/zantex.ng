@@ -1,24 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {
   ArrowLeft,
   Send,
-  ChevronDown,
-  CheckCircle2,
   Monitor,
   Zap,
   Cpu,
-  UtensilsCrossed,
+  Wifi,
   MessageSquare,
   Clock,
   ShieldCheck,
   ArrowRight,
 } from 'lucide-react';
+import { buildQuoteMessage, getWhatsAppUrl, WHATSAPP_CONTACTS } from '@/lib/whatsapp';
 
 const NAVY = '#2f455c';
 const TEAL = '#34f5c6';
@@ -27,17 +27,50 @@ const divisions = [
   { icon: Monitor, label: 'Zantex Digital', sub: 'Web, Mobile & Branding' },
   { icon: Zap, label: 'Zantex Electrical', sub: 'Installations & Power' },
   { icon: Cpu, label: 'Zantex Electronics', sub: 'Arduino, Robotics & IoT' },
-  { icon: UtensilsCrossed, label: 'Zantex Zone', sub: 'Restaurant & Dining' },
+  { icon: Wifi, label: 'Zantex Internet', sub: 'Campus & enterprise connectivity' },
   { icon: MessageSquare, label: 'General Enquiry', sub: 'Not sure? We\'ll help' },
 ];
 
+const services = [
+  'Electrical installation',
+  'Solar installation',
+  'Networking',
+  'Starlink installation',
+  'Hostel Wi-Fi',
+  'Web development',
+  'Mobile development',
+  'AI and robotics',
+  'IoT development',
+  'Electronics',
+  'Technical training',
+  'Other',
+];
+
+const divisionDefaults: Record<string, string> = {
+  'Zantex Digital': 'Web development',
+  'Zantex Electrical': 'Electrical installation',
+  'Zantex Electronics': 'Electronics',
+  'Zantex Internet': 'Hostel Wi-Fi',
+  'General Enquiry': 'Other',
+};
+
 const perks = [
-  { icon: Clock, text: 'Response within 24 hours' },
-  { icon: ShieldCheck, text: 'Confidential & secure' },
-  { icon: ArrowRight, text: 'No obligation, free quote' },
+  { icon: Clock, text: 'Select the service you need' },
+  { icon: ShieldCheck, text: 'Add optional project context' },
+  { icon: ArrowRight, text: 'Choose a WhatsApp contact' },
 ];
 
 export default function QuotePage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-slate-50" />}>
+      <QuoteForm />
+    </Suspense>
+  );
+}
+
+function QuoteForm() {
+  const searchParams = useSearchParams();
+  const requestedService = searchParams.get('service');
   const [selectedDivision, setSelectedDivision] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
@@ -45,20 +78,42 @@ export default function QuotePage() {
     email: '',
     phone: '',
     company: '',
+    service: requestedService && services.includes(requestedService) ? requestedService : '',
+    location: '',
+    projectType: '',
+    budget: '',
     message: '',
   });
+  const [validationError, setValidationError] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setValidationError('');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedDivision) return;
+    if (!form.name.trim() || !form.phone.trim() || !form.service || !form.message.trim()) {
+      setValidationError('Please enter your name, phone number, service and project details.');
+      return;
+    }
+    setValidationError('');
     setSubmitted(true);
   };
+
+  const whatsappMessage = buildQuoteMessage({
+    name: form.name.trim(),
+    phone: form.phone.trim(),
+    email: form.email.trim(),
+    company: form.company.trim(),
+    service: form.service,
+    location: form.location.trim(),
+    projectType: form.projectType.trim(),
+    budget: form.budget.trim(),
+    message: form.message.trim(),
+  });
 
   return (
     <main
@@ -91,7 +146,7 @@ export default function QuotePage() {
 
           <AnimatePresence mode="wait">
             {submitted ? (
-              /* ── SUCCESS STATE ── */
+              /* ── WHATSAPP HANDOFF ── */
               <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -103,15 +158,28 @@ export default function QuotePage() {
                   className="w-24 h-24 rounded-full flex items-center justify-center"
                   style={{ backgroundColor: `${TEAL}22` }}
                 >
-                  <CheckCircle2 className="w-12 h-12" style={{ color: TEAL }} />
+                  <MessageSquare className="w-12 h-12" style={{ color: TEAL }} />
                 </div>
                 <h1 className="text-4xl md:text-5xl font-black" style={{ color: NAVY }}>
-                  Request Sent!
+                  Your enquiry is ready
                 </h1>
                 <p className="text-slate-500 text-lg max-w-md leading-relaxed">
-                  Thanks, <strong style={{ color: NAVY }}>{form.name}</strong>! We have received
-                  your request and will be in touch within <strong style={{ color: TEAL }}>24 hours</strong>.
+                  Choose a WhatsApp number below to send your project details to Zantex. Your
+                  enquiry has not been sent until you send it in WhatsApp.
                 </p>
+                <div className="flex w-full max-w-md flex-col gap-3 pt-2">
+                  {WHATSAPP_CONTACTS.map((contact) => (
+                    <a
+                      key={contact.number}
+                      href={getWhatsAppUrl(contact.number, whatsappMessage)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-[#2f455c] px-8 py-4 font-bold text-white transition-colors hover:bg-[#168f78] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#168f78]"
+                    >
+                      WhatsApp {contact.label}
+                    </a>
+                  ))}
+                </div>
                 <Link
                   href="/"
                   className="mt-4 inline-flex items-center gap-2 font-bold px-8 py-4 rounded-full text-white transition-all active:scale-95 shadow-lg"
@@ -155,7 +223,7 @@ export default function QuotePage() {
                     <h1
                       className="text-4xl md:text-5xl font-black leading-[1.05] tracking-tight text-white mb-4"
                     >
-                      Let's build{' '}
+                      Let&apos;s build{' '}
                       <span style={{ color: TEAL }}>something</span>{' '}
                       great together.
                     </h1>
@@ -195,7 +263,11 @@ export default function QuotePage() {
                           <button
                             key={label}
                             type="button"
-                            onClick={() => setSelectedDivision(label)}
+                            onClick={() => {
+                              setSelectedDivision(label);
+                              setForm((current) => ({ ...current, service: divisionDefaults[label] }));
+                              setValidationError('');
+                            }}
                             className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl transition-all text-left group"
                             style={{
                               backgroundColor: isActive ? `${TEAL}20` : 'transparent',
@@ -239,12 +311,8 @@ export default function QuotePage() {
                       Request a Quote
                     </h2>
                     <p className="text-slate-500 text-sm">
-                      {selectedDivision
-                        ? `Enquiring about: `
-                        : 'Select a division on the left to get started, then fill in your details.'}
-                      {selectedDivision && (
-                        <strong style={{ color: TEAL }}>{selectedDivision}</strong>
-                      )}
+                      {selectedDivision ? `Selected division: ${selectedDivision}. ` : ''}
+                      Choose a service and share a few project details to prepare your enquiry.
                     </p>
                   </div>
 
@@ -252,11 +320,12 @@ export default function QuotePage() {
                     {/* Name + Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                        <label htmlFor="quote-name" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
                           Full Name <span style={{ color: TEAL }}>*</span>
                         </label>
                         <input
                           type="text"
+                          id="quote-name"
                           name="name"
                           required
                           value={form.name}
@@ -275,13 +344,13 @@ export default function QuotePage() {
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
-                          Email Address <span style={{ color: TEAL }}>*</span>
+                        <label htmlFor="quote-email" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                          Email Address (optional)
                         </label>
                         <input
                           type="email"
+                          id="quote-email"
                           name="email"
-                          required
                           value={form.email}
                           onChange={handleChange}
                           placeholder="you@email.com"
@@ -301,12 +370,14 @@ export default function QuotePage() {
                     {/* Phone + Company */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
-                          Phone Number
+                        <label htmlFor="quote-phone" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                          Phone Number <span style={{ color: TEAL }}>*</span>
                         </label>
                         <input
                           type="tel"
+                          id="quote-phone"
                           name="phone"
+                          required
                           value={form.phone}
                           onChange={handleChange}
                           placeholder="+234 800 000 0000"
@@ -322,11 +393,12 @@ export default function QuotePage() {
                         />
                       </div>
                       <div className="space-y-1.5">
-                        <label className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                        <label htmlFor="quote-company" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
                           Company / Organisation
                         </label>
                         <input
                           type="text"
+                          id="quote-company"
                           name="company"
                           value={form.company}
                           onChange={handleChange}
@@ -344,41 +416,46 @@ export default function QuotePage() {
                       </div>
                     </div>
 
-                    {/* Selected division indicator */}
-                    {!selectedDivision && (
-                      <div
-                        className="flex items-center gap-3 px-4 py-3.5 rounded-2xl border text-sm font-medium"
-                        style={{
-                          borderColor: `${TEAL}40`,
-                          backgroundColor: `${TEAL}08`,
-                          color: NAVY,
-                        }}
+                    <div className="space-y-1.5">
+                      <label htmlFor="service" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                        Service required <span style={{ color: TEAL }}>*</span>
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        required
+                        value={form.service}
+                        onChange={handleChange}
+                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#34f5c6]"
                       >
-                        <ChevronDown className="w-4 h-4" style={{ color: TEAL }} />
-                        Please select a division from the left panel
+                        <option value="">Select a service</option>
+                        {services.map((service) => <option key={service} value={service}>{service}</option>)}
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <label htmlFor="location" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>Project location</label>
+                        <input id="location" name="location" value={form.location} onChange={handleChange} placeholder="Town or state" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#34f5c6]" />
                       </div>
-                    )}
-                    {selectedDivision && (
-                      <div
-                        className="flex items-center gap-3 px-4 py-3.5 rounded-2xl border text-sm font-bold"
-                        style={{
-                          borderColor: `${TEAL}50`,
-                          backgroundColor: `${TEAL}12`,
-                          color: NAVY,
-                        }}
-                      >
-                        <CheckCircle2 className="w-4 h-4" style={{ color: TEAL }} />
-                        {selectedDivision}
+                      <div className="space-y-1.5">
+                        <label htmlFor="projectType" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>Project type</label>
+                        <input id="projectType" name="projectType" value={form.projectType} onChange={handleChange} placeholder="New installation, upgrade…" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#34f5c6]" />
                       </div>
-                    )}
+                      <div className="space-y-1.5 sm:col-span-2">
+                        <label htmlFor="budget" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>Estimated budget (optional)</label>
+                        <input id="budget" name="budget" value={form.budget} onChange={handleChange} placeholder="Optional" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#34f5c6]" />
+                      </div>
+                    </div>
 
                     {/* Message */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
+                      <label htmlFor="quote-message" className="text-xs font-black uppercase tracking-wider" style={{ color: NAVY }}>
                         Project Details <span style={{ color: TEAL }}>*</span>
                       </label>
                       <textarea
                         name="message"
+                        id="quote-message"
                         required
                         rows={5}
                         value={form.message}
@@ -399,7 +476,7 @@ export default function QuotePage() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      disabled={!selectedDivision}
+                      disabled={submitted}
                       className="w-full font-black py-4 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-lg mt-2 group disabled:opacity-40 disabled:cursor-not-allowed text-white"
                       style={{ backgroundColor: NAVY }}
                       onMouseEnter={e => {
@@ -413,11 +490,16 @@ export default function QuotePage() {
                       }}
                     >
                       <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      Send Request
+                      Prepare WhatsApp Enquiry
                     </button>
 
+                    {validationError && (
+                      <p role="alert" className="text-center text-sm font-semibold text-red-700">
+                        {validationError}
+                      </p>
+                    )}
                     <p className="text-center text-xs text-slate-400">
-                      We typically respond within 24 hours on business days.
+                      Your details are placed into a WhatsApp message. Nothing is sent until you choose a contact and send it.
                     </p>
                   </form>
                 </div>

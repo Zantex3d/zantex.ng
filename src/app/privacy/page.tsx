@@ -9,22 +9,22 @@ const sections = [
   {
     icon: Shield,
     title: 'Data Collection',
-    content: "We collect information you provide directly to us, such as when you request a quote, subscribe to our newsletter, or contact us. This may include your name, email address, phone number, and company details.",
+    content: "When you purchase a Wi-Fi voucher, the checkout sends the name, email address, phone number, hostel and plan you provide to Paystack. Successful purchase details are recorded to issue and manage the voucher. A quotation form only prepares a WhatsApp message; the details are shared if you choose a contact and send that message.",
   },
   {
     icon: Lock,
     title: 'Data Security',
-    content: "We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, or disclosure. Your data is stored on secure servers with restricted access.",
+    content: "Voucher payments are processed through Paystack. Purchase records are handled by the Zantex voucher service, and WhatsApp enquiries are sent only when you choose to send the prepared message. No website can guarantee the security of third-party platforms, so please review their privacy information as well.",
   },
   {
     icon: Eye,
     title: 'Use of Information',
-    content: "Your information is used solely to provide and improve our services, communicate with you about your projects, and send updates regarding Zantex Global Enhancement. We do not sell your data to third parties.",
+    content: "Information submitted for a voucher is used to verify payment, allocate the selected voucher, record the purchase and deliver voucher details. Paystack handles payment processing and Termii may be used to send voucher SMS messages. The website does not include a newsletter subscription form.",
   },
   {
     icon: FileText,
-    title: 'Cookie Policy',
-    content: "Our website uses cookies to enhance your browsing experience and analyze site traffic. You can choose to disable cookies through your browser settings, though this may affect some site functionality.",
+    title: 'External Services',
+    content: "The website links to WhatsApp for enquiries and to a separate restaurant ordering website for Zantex Zone. Those services operate under their own privacy policies and terms.",
   }
 ];
 
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             transition={{ delay: 0.1 }}
             className="text-slate-300 text-lg font-medium"
           >
-            Last Updated: March 2026. Your privacy is our highest priority at Zantex.
+            Last Updated: March 2026.
           </motion.p>
         </div>
       </section>
@@ -92,16 +92,15 @@ export default function PrivacyPage() {
             viewport={{ once: true }}
             className="mt-24 p-12 rounded-[3rem] bg-slate-50 border border-slate-100"
           >
-            <h3 className="text-xl font-black text-[#2f455c] mb-4">Contact Our Privacy Team</h3>
+            <h3 className="text-xl font-black text-[#2f455c] mb-4">Questions about privacy?</h3>
             <p className="text-slate-500 font-medium mb-6">
-              If you have any questions about this Privacy Policy or how we handle your data, 
-              please reach out to our legal department.
+              Contact Zantex using the WhatsApp options on our contact page.
             </p>
-            <a 
-              href="mailto:privacy@zantex.com" 
-              className="inline-block text-[#34f5c6] font-black hover:underline"
+            <a
+              href="/contact"
+              className="inline-block font-black text-[#168f78] hover:underline"
             >
-              privacy@zantex.com
+              Open contact options
             </a>
           </motion.div>
         </div>
